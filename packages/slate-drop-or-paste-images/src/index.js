@@ -41,9 +41,9 @@ function DropOrPasteImages(options = {}) {
    * @return {Promise}
    */
 
-  function asyncApplyChange(change, editor, file) {
+  function asyncApplyChange(change, file, editor) {
     return Promise
-      .resolve(insertImage(change, file))
+      .resolve(insertImage(change, file, editor))
       .then(() => {
         editor.onChange(change)
       })
@@ -91,7 +91,7 @@ function DropOrPasteImages(options = {}) {
         change.select(target)
       }
 
-      asyncApplyChange(change, editor, file)
+      asyncApplyChange(change, file, editor)
     }
 
     return true
@@ -126,7 +126,7 @@ function DropOrPasteImages(options = {}) {
       if (err) return
       const c = editor.value.change()
       if (target) c.select(target)
-      asyncApplyChange(c, editor, file)
+      asyncApplyChange(c, file, editor)
     })
 
     return true
@@ -151,7 +151,7 @@ function DropOrPasteImages(options = {}) {
       if (err) return
       const c = editor.value.change()
       if (target) c.select(target)
-      asyncApplyChange(c, editor, file)
+      asyncApplyChange(c, file, editor)
     })
 
     return true
